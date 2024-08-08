@@ -26,7 +26,7 @@ public class ZombieGameWithUI extends GUIState {
     }
 
     public ZombieGameWithUI() {
-        //
+        // Create new game
         super(new ZombieGame(System.currentTimeMillis()));
     }
 

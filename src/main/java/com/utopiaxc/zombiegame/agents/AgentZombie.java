@@ -15,11 +15,14 @@ import java.util.List;
 
 public class AgentZombie implements IAgent, Steppable {
     public double mSpeed = Configs.getInstance().getSpeedZombie();
+    public double mKillCount = 0;
 
     @Override
     public Color getAgentColor() {
         return Configs.getInstance().getColorZombie();
     }
+
+    public double getKillCount(){return mKillCount;}
 
     @Override
     public void step(SimState simState) {
@@ -79,6 +82,7 @@ public class AgentZombie implements IAgent, Steppable {
                     new Double2D(closestCoordinate.getX(), closestCoordinate.getY()));
             zombieGame.mZombies.add(zombie);
             zombieGame.schedule.scheduleRepeating(zombie);
+            mKillCount ++;
         }
 
         finalCoordinate = myCoordinate.calculateFinalCoordinate(closestCoordinate, mSpeed);
