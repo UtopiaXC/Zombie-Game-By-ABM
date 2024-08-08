@@ -9,7 +9,13 @@ public class Configs {
     private double mSpeedZombie;
     private double mSpeedCivilian;
     private double mSpeedArmy;
+    private double mSpeedVariationZombie;
+    private double mSpeedVariationCivilian;
+    private double mSpeedVariationArmy;
     private int mNumZombies;
+    private double mArmyShotRange;
+    private double mArmyEscapeRange;
+    private int mArmyShotColdDown;
     private int mNumCivilian;
     private int mNumArmy;
     private Color mColorZombie;
@@ -28,11 +34,17 @@ public class Configs {
 
     private Configs() {
         mSpeedZombie = 2.0;
-        mSpeedArmy = 1.0;
-        mSpeedCivilian = 1.4;
-        mNumZombies = 5;
+        mSpeedArmy = 0.8;
+        mSpeedCivilian = 1.2;
+        mSpeedVariationZombie = 0.1;
+        mSpeedVariationCivilian = 0.3;
+        mSpeedVariationArmy = 0.2;
+        mNumZombies = 50;
         mNumCivilian = 100;
-        mNumArmy = 10;
+        mNumArmy = 25;
+        mArmyShotRange = 30;
+        mArmyEscapeRange = 5;
+        mArmyShotColdDown = 10;
         mColorZombie = Color.RED;
         mColorCivilian = Color.GREEN;
         mColorArmy = Color.ORANGE;
@@ -135,5 +147,53 @@ public class Configs {
 
     public void setPositionArmy(StartingPosition positionArmy) {
         mPositionArmy = positionArmy;
+    }
+
+    public int getArmyShotColdDown() {
+        return mArmyShotColdDown;
+    }
+
+    public void setArmyShotColdDown(int armyShotColdDown) {
+        mArmyShotColdDown = armyShotColdDown;
+    }
+
+    public double getArmyEscapeRange() {
+        return mArmyEscapeRange;
+    }
+
+    public void setArmyEscapeRange(double armyEscapeRange) {
+        mArmyEscapeRange = armyEscapeRange;
+    }
+
+    public double getArmyShotRange() {
+        return mArmyShotRange;
+    }
+
+    public void setArmyShotRange(double armyShotRange) {
+        mArmyShotRange = armyShotRange;
+    }
+
+    public double getSpeedVariationArmy() {
+        return mSpeedVariationArmy;
+    }
+
+    public void setSpeedVariationArmy(double speedVariationArmy) {
+        mSpeedVariationArmy = speedVariationArmy;
+    }
+
+    public double getSpeedVariationCivilian() {
+        return mSpeedVariationCivilian;
+    }
+
+    public void setSpeedVariationCivilian(double speedVariationCivilian) {
+        mSpeedVariationCivilian = speedVariationCivilian;
+    }
+
+    public double getSpeedVariationZombie() {
+        return mSpeedVariationZombie;
+    }
+
+    public void setSpeedVariationZombie(double speedVariationZombie) {
+        mSpeedVariationZombie = speedVariationZombie;
     }
 }

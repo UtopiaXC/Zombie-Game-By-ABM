@@ -64,4 +64,10 @@ public class ZombieGame extends SimState {
         mCivilians = new ArrayList<>();
         mArmies = new ArrayList<>();
     }
+
+    public void checkOver() {
+        if (mZombies.isEmpty() || (mCivilians.isEmpty() && mArmies.isEmpty())){
+            this.finish();
+        }
+    }
 }

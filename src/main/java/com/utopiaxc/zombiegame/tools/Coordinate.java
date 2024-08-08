@@ -40,9 +40,17 @@ public class Coordinate {
                         + Math.pow(Math.abs(coordinate.getY() - mY), 2));
     }
 
-    public Coordinate calculateFinalCoordinate(Coordinate coordinate, double distance) {
-        double x = distance / this.calculateDistance(coordinate) * (coordinate.getX() - mX) + mX;
-        double y = distance / this.calculateDistance(coordinate) * (coordinate.getY() - mY) + mY;
-        return new Coordinate(x,y);
+    public Coordinate calculateFinalCoordinateForApproaching(Coordinate coordinate, double distance) {
+        double recentDistance = this.calculateDistance(coordinate);
+        double x = distance / recentDistance * (coordinate.getX() - mX) + mX;
+        double y = distance / recentDistance * (coordinate.getY() - mY) + mY;
+        return new Coordinate(x, y);
+    }
+
+    public Coordinate calculateFinalCoordinateForRunningAway(Coordinate coordinate, double distance) {
+        double recentDistance = this.calculateDistance(coordinate);
+        double x = (mX - coordinate.getX()) / recentDistance * (recentDistance + distance) + coordinate.getX();
+        double y = (mY - coordinate.getY()) / recentDistance * (recentDistance + distance) + coordinate.getY();
+        return new Coordinate(x, y);
     }
 }
