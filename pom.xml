@@ -14,4 +14,37 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>sim</groupId>
+            <artifactId>mason</artifactId>
+            <version>22</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/mason.22.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>java</groupId>
+            <artifactId>j3dcore</artifactId>
+            <version>1.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/mac3d/j3dcore.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>java</groupId>
+            <artifactId>j3dutils</artifactId>
+            <version>1.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/mac3d/j3dutils.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>java</groupId>
+            <artifactId>vecmath</artifactId>
+            <version>1.5.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/mac3d/vecmath.jar</systemPath>
+        </dependency>
+    </dependencies>
 </project>
