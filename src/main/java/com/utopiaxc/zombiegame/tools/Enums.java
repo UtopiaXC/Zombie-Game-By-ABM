@@ -5,17 +5,33 @@ import sim.util.Double2D;
 
 public class Enums {
     public enum StartingPosition {
-        TOP_LEFT("TOP_LEFT"),
-        TOP_CENTER("TOP_CENTER"),
-        TOP_RIGHT("TOP_RIGHT"),
-        MIDDLE_LEFT("MIDDLE_LEFT"),
-        MIDDLE_CENTER("MIDDLE_CENTER"),
-        MIDDLE_RIGHT("MIDDLE_RIGHT"),
-        BOTTOM_LEFT("BOTTOM_LEFT"),
-        BOTTOM_CENTER("BOTTOM_CENTER"),
-        BOTTOM_RIGHT("BOTTOM_RIGHT");
+        TOP_LEFT("TOP_LEFT", 0),
+        TOP_CENTER("TOP_CENTER",1),
+        TOP_RIGHT("TOP_RIGHT",2),
+        MIDDLE_LEFT("MIDDLE_LEFT",3),
+        MIDDLE_CENTER("MIDDLE_CENTER",4),
+        MIDDLE_RIGHT("MIDDLE_RIGHT",5),
+        BOTTOM_LEFT("BOTTOM_LEFT",6),
+        BOTTOM_CENTER("BOTTOM_CENTER",7),
+        BOTTOM_RIGHT("BOTTOM_RIGHT",8);
+        private String mPositionName;
+        private int mIndex;
+        StartingPosition(String positionName, int index) {
+            mPositionName = positionName;
+            mIndex = index;
+        }
 
-        StartingPosition(String positionName) {
+        public int getIndex(){
+            return mIndex;
+        }
+
+        public static StartingPosition getFromIndex(int index){
+            for (StartingPosition position : StartingPosition.values()) {
+                if (position.mIndex == index){
+                    return position;
+                }
+            }
+            return null;
         }
 
         public Double2D generatePosition(MersenneTwisterFast random, double x, double y) {

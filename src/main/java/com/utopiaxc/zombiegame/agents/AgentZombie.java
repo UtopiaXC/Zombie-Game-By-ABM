@@ -1,6 +1,6 @@
 package com.utopiaxc.zombiegame.agents;
 
-import com.utopiaxc.zombiegame.ZombieGame;
+import com.utopiaxc.zombiegame.game.ZombieGame;
 import com.utopiaxc.zombiegame.tools.Configs;
 import com.utopiaxc.zombiegame.tools.Coordinate;
 import sim.engine.SimState;

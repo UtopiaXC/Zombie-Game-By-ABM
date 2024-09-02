@@ -1,6 +1,7 @@
-package com.utopiaxc.zombiegame;
+package com.utopiaxc.zombiegame.game;
 
 import com.utopiaxc.zombiegame.agents.IAgent;
+import com.utopiaxc.zombiegame.tools.Configs;
 import sim.display.Console;
 import sim.display.Controller;
 import sim.display.Display2D;
@@ -15,19 +16,31 @@ import java.awt.*;
 
 public class ZombieGameWithUI extends GUIState {
 
+    private static ZombieGameWithUI instance;
     public Display2D mDisplay;
     public JFrame mDisplayFrame;
     ContinuousPortrayal2D mYardPortrayal = new ContinuousPortrayal2D();
+    Console mConsole = null;
 
-    public static void main(String[] args) {
-        ZombieGameWithUI zombieGameWithUI = new ZombieGameWithUI();
-        Console c = new Console(zombieGameWithUI);
-        c.setVisible(true);
+    public static synchronized ZombieGameWithUI getInstance() {
+        if (instance == null) {
+            instance = new ZombieGameWithUI();
+        }
+        return instance;
     }
 
     public ZombieGameWithUI() {
         // Create new game
         super(new ZombieGame(System.currentTimeMillis()));
+    }
+
+    public void init(){
+        if (mConsole != null){
+            mConsole.setVisible(false);
+            mConsole = null;
+        }
+        mConsole = new Console(instance);
+        mConsole.setVisible(true);
     }
 
     // When the play button is pressed, this method will be called.

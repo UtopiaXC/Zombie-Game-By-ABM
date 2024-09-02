@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.utopiaxc.zombiegame.Application">
+  <grid id="27dc6" binding="mPanel" layout-manager="GridLayoutManager" row-count="25" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="877"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="e1454" class="javax.swing.JLabel" binding="mLabelZombieSpeed">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zombie Speed"/>
+        </properties>
+      </component>
+      <vspacer id="971e2">
+        <constraints>
+          <grid row="22" column="1" row-span="3" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="50" height="-1"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <component id="f6996" class="javax.swing.JTextField" binding="mInputZombieSpeed">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <hspacer id="c0b8c">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="40" height="-1"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <hspacer id="f4ab1">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="40" height="-1"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <hspacer id="ebac2">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="40"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <component id="75577" class="javax.swing.JButton" binding="mButtonStartGame">
+        <constraints>
+          <grid row="22" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Start Game" noi18n="true"/>
+        </properties>
+      </component>
+      <vspacer id="c57fb">
+        <constraints>
+          <grid row="24" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="40"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <component id="caa6f" class="javax.swing.JLabel" binding="mLabelCivilianSpeed">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Civilian Speed"/>
+        </properties>
+      </component>
+      <component id="a51e4" class="javax.swing.JTextField" binding="mInputZombieSpeedCorrectionFactor">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="7158e" class="javax.swing.JTextField" binding="mInputCivilianSpeed">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="cdc0" class="javax.swing.JTextField" binding="mInputCivilianSpeedConnectionFactor">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="fc714" class="javax.swing.JTextField" binding="mInputArmySpeed">
+        <constraints>
+          <grid row="15" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <vspacer id="457f5">
+        <constraints>
+          <grid row="21" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="7de27" class="javax.swing.JTextField" binding="mInputArmySpeedCorrectionFactor">
+        <constraints>
+          <grid row="16" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="a01be" class="javax.swing.JLabel" binding="mLabelZombieSpeedCorrectionFactor">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zombie Speed Correction Factor"/>
+        </properties>
+      </component>
+      <component id="63fe3" class="javax.swing.JLabel" binding="mLabelArmySpeedCorrectionFactor">
+        <constraints>
+          <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Speed Correction Factor"/>
+        </properties>
+      </component>
+      <component id="46c7f" class="javax.swing.JLabel" binding="mLabelArmySpeed">
+        <constraints>
+          <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Speed"/>
+        </properties>
+      </component>
+      <component id="93d62" class="javax.swing.JLabel" binding="mLabelCivilianSpeedConnectionFactor">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Civilian Speed Correction Factor"/>
+        </properties>
+      </component>
+      <component id="3ee8c" class="javax.swing.JLabel" binding="mLabelZombieAmount">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zombie Amount"/>
+        </properties>
+      </component>
+      <component id="b225f" class="javax.swing.JTextField" binding="mInputZombieAmount">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="52fa9" class="javax.swing.JLabel" binding="mLabelArmyShotRange">
+        <constraints>
+          <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Shot Range"/>
+        </properties>
+      </component>
+      <component id="64e91" class="javax.swing.JLabel" binding="mLabelArmyEscapeRange">
+        <constraints>
+          <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Escape Range"/>
+        </properties>
+      </component>
+      <component id="62427" class="javax.swing.JLabel" binding="mLabelArmyShotColdDown">
+        <constraints>
+          <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Shot Cold Down"/>
+        </properties>
+      </component>
+      <component id="b537c" class="javax.swing.JTextField" binding="mInputArmyShotRange">
+        <constraints>
+          <grid row="18" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="75f44" class="javax.swing.JTextField" binding="mInputArmyEscapeRange">
+        <constraints>
+          <grid row="19" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="63f31" class="javax.swing.JTextField" binding="mInputArmyShotColdDown">
+        <constraints>
+          <grid row="20" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="f53f" class="javax.swing.JLabel" binding="mLabelCivilianAmount">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Civilian Amount"/>
+        </properties>
+      </component>
+      <component id="5bede" class="javax.swing.JTextField" binding="mInputCivilianAmount">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="3cac8" class="javax.swing.JLabel" binding="mLabelArmyAmount">
+        <constraints>
+          <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Amount"/>
+        </properties>
+      </component>
+      <component id="e8e21" class="javax.swing.JTextField" binding="mInputArmyAmount">
+        <constraints>
+          <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="81e00" class="javax.swing.JLabel" binding="mLabelZombieConfigs">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zombie Configs"/>
+        </properties>
+      </component>
+      <component id="1c5b8" class="javax.swing.JLabel" binding="mLabelCivilianConfigs">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Civilian Configs"/>
+        </properties>
+      </component>
+      <component id="b96d6" class="javax.swing.JLabel" binding="mLabelArmyConfigs">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Configs"/>
+        </properties>
+      </component>
+      <vspacer id="4e72">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="10f65">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <component id="fc270" class="javax.swing.JLabel" binding="mLabelZombieGenerationPosition">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Zombie Generation Position"/>
+        </properties>
+      </component>
+      <component id="4e86f" class="javax.swing.JComboBox" binding="mSelectorZombieGenerationPosition">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="TOP_LEFT"/>
+            <item value="TOP_CENTER"/>
+            <item value="TOP_RIGHT"/>
+            <item value="MIDDLE_LEFT"/>
+            <item value="MIDDLE_CENTER"/>
+            <item value="MIDDLE_RIGHT"/>
+            <item value="BOTTOM_LEFT"/>
+            <item value="BOTTOM_CENTER"/>
+            <item value="BOTTOM_RIGHT"/>
+          </model>
+        </properties>
+      </component>
+      <component id="c55e0" class="javax.swing.JLabel" binding="mLabelCivilianGenerationPosition">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Civilian Generation Position"/>
+        </properties>
+      </component>
+      <component id="db183" class="javax.swing.JComboBox" binding="mSelectorCivilianGenerationPosition">
+        <constraints>
+          <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="TOP_LEFT"/>
+            <item value="TOP_CENTER"/>
+            <item value="TOP_RIGHT"/>
+            <item value="MIDDLE_LEFT"/>
+            <item value="MIDDLE_CENTER"/>
+            <item value="MIDDLE_RIGHT"/>
+            <item value="BOTTOM_LEFT"/>
+            <item value="BOTTOM_CENTER"/>
+            <item value="BOTTOM_RIGHT"/>
+          </model>
+        </properties>
+      </component>
+      <component id="f8dc3" class="javax.swing.JLabel" binding="mLabelArmyGenerationPosition">
+        <constraints>
+          <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Army Generation Position"/>
+        </properties>
+      </component>
+      <component id="ad745" class="javax.swing.JComboBox" binding="mSelectorArmyGenerationPosition">
+        <constraints>
+          <grid row="17" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="TOP_LEFT"/>
+            <item value="TOP_CENTER"/>
+            <item value="TOP_RIGHT"/>
+            <item value="MIDDLE_LEFT"/>
+            <item value="MIDDLE_CENTER"/>
+            <item value="MIDDLE_RIGHT"/>
+            <item value="BOTTOM_LEFT"/>
+            <item value="BOTTOM_CENTER"/>
+            <item value="BOTTOM_RIGHT"/>
+          </model>
+        </properties>
+      </component>
+      <component id="3f199" class="javax.swing.JButton" binding="mButtonResetConfig">
+        <constraints>
+          <grid row="23" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Reset Config"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

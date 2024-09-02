@@ -1,4 +1,4 @@
-package com.utopiaxc.zombiegame;
+package com.utopiaxc.zombiegame.game;
 
 import com.utopiaxc.zombiegame.agents.AgentArmy;
 import com.utopiaxc.zombiegame.agents.AgentCivilian;
@@ -34,7 +34,7 @@ public class ZombieGame extends SimState {
             mYard.setObjectLocation(zombie, Configs.getInstance().getPositionZombie().generatePosition(
                     random, mYard.getWidth(), mYard.getHeight()));
             mZombies.add(zombie);
-            schedule.scheduleRepeating(zombie);
+            schedule.scheduleRepeating(zombie); 
         }
 
         // Create civilians and add them into schedule task

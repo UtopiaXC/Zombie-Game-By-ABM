@@ -1,6 +1,6 @@
 package com.utopiaxc.zombiegame.agents;
 
-import com.utopiaxc.zombiegame.ZombieGame;
+import com.utopiaxc.zombiegame.game.ZombieGame;
 import com.utopiaxc.zombiegame.tools.Configs;
 import com.utopiaxc.zombiegame.tools.Coordinate;
 import sim.engine.SimState;
@@ -104,8 +104,37 @@ public class AgentArmy implements IAgent, Steppable {
             }
 
             Coordinate finalCoordinate;
+            List<Coordinate> humans = new ArrayList<>();
+            boolean isAnyoneOnTheShotWay = false;
+            for (AgentCivilian mCivilian : zombieGame.mCivilians) {
+                Double2D civilian = yard.getObjectLocation(mCivilian);
+                Coordinate coordinate = new Coordinate(civilian.getX(), civilian.getY());
+                coordinate.setAgent(civilian);
+                humans.add(coordinate);
+            }
+            for (AgentArmy mArmy : zombieGame.mArmies) {
+                Double2D army = yard.getObjectLocation(mArmy);
+                if (myCoordinate.getY() == army.getY() && myCoordinate.getX() == army.getX()) {
+                    continue;
+                }
+                Coordinate coordinate = new Coordinate(army.getX(), army.getY());
+                coordinate.setAgent(army);
+                humans.add(coordinate);
+            }
+            for (Coordinate human : humans) {
+                if (((human.getX() - myCoordinate.getX()) * (closestCoordinate.getY() - myCoordinate.getY())
+                        == (closestCoordinate.getX() - myCoordinate.getX()) * (human.getY() - myCoordinate.getY()))
+                        && Math.min(myCoordinate.getX(), closestCoordinate.getX()) < human.getX()
+                        && human.getX() < Math.max(myCoordinate.getX(), closestCoordinate.getX())
+                        && Math.min(myCoordinate.getY(), closestCoordinate.getY()) < human.getY()
+                        && human.getY() < Math.max(myCoordinate.getY(), closestCoordinate.getY())) {
+                    isAnyoneOnTheShotWay = true;
+                    break;
+                }
+            }
             if (closestDistance <= mShotRange
-                    && mLastShotBeforeSteps > mArmyShotColdDown) {
+                    && mLastShotBeforeSteps > mArmyShotColdDown
+                    && !isAnyoneOnTheShotWay) {
                 zombieGame.mYard.remove(closestCoordinate.getAgent());
                 zombieGame.mZombies.remove((AgentZombie) closestCoordinate.getAgent());
                 mKillCount++;
