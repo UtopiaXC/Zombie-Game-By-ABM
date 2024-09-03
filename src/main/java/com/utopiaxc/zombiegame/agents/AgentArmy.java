@@ -15,11 +15,11 @@ import java.util.List;
 
 public class AgentArmy implements IAgent, Steppable {
     private double mSpeed = Configs.getInstance().getSpeedArmy();
-    private int mLastShotBeforeSteps = Integer.MAX_VALUE;
+    private int mLastShootBeforeSteps = Integer.MAX_VALUE;
     private double mKillCount = 0;
-    private double mShotRange = Configs.getInstance().getArmyShotRange();
+    private double mShootRange = Configs.getInstance().getArmyShootRange();
     private double mEscapeRange = Configs.getInstance().getArmyEscapeRange();
-    private int mArmyShotColdDown = Configs.getInstance().getArmyShotColdDown();
+    private int mArmyShootColdDown = Configs.getInstance().getArmyShootColdDown();
 
 
     @Override
@@ -41,12 +41,12 @@ public class AgentArmy implements IAgent, Steppable {
         return mKillCount;
     }
 
-    public int getArmyShotColdDown() {
-        return mArmyShotColdDown;
+    public int getArmyShootColdDown() {
+        return mArmyShootColdDown;
     }
 
-    public void setArmyShotColdDown(int armyShotColdDown) {
-        mArmyShotColdDown = armyShotColdDown;
+    public void setArmyShootColdDown(int armyShootColdDown) {
+        mArmyShootColdDown = armyShootColdDown;
     }
 
     public double getEscapeRange() {
@@ -57,31 +57,42 @@ public class AgentArmy implements IAgent, Steppable {
         mEscapeRange = escapeRange;
     }
 
-    public double getShotRange() {
-        return mShotRange;
+    public double getShootRange() {
+        return mShootRange;
     }
 
-    public void setShotRange(double shotRange) {
-        mShotRange = shotRange;
+    public void setShootRange(double shootRange) {
+        mShootRange = shootRange;
     }
 
     @Override
     public void step(SimState simState) {
         try {
+            // Get the zombie agent entry from simulator.
             ZombieGame zombieGame = (ZombieGame) simState;
             zombieGame.checkOver();
+
+            // Change the speed of the agent by random value and the correction factor.
             mSpeed += (zombieGame.random.nextDouble() - 0.5) * Configs.getInstance().getSpeedVariationArmy();
+
+            // Get the coordinate entity from simulator.
             Continuous2D yard = zombieGame.mYard;
             Double2D me = yard.getObjectLocation(this);
             MutableDouble2D sumForces = new MutableDouble2D();
-            List<Coordinate> coordinates = new ArrayList<>();
+
+            // Create the coordinate class for the agent.
             Coordinate myCoordinate = new Coordinate(me.getX(), me.getY());
+
+            // Get all zombies' coordinate.
+            List<Coordinate> coordinates = new ArrayList<>();
             for (AgentZombie mZombie : zombieGame.mZombies) {
                 Double2D zombie = yard.getObjectLocation(mZombie);
                 Coordinate coordinate = new Coordinate(zombie.getX(), zombie.getY());
                 coordinate.setAgent(mZombie);
                 coordinates.add(coordinate);
             }
+
+            // If there is no zombies, move randomly.
             if (coordinates.isEmpty()) {
                 Coordinate coordinate = new Coordinate(
                         zombieGame.random.nextDouble() * yard.getWidth(),
@@ -93,6 +104,8 @@ public class AgentArmy implements IAgent, Steppable {
                 yard.setObjectLocation(this, new Double2D(sumForces));
                 return;
             }
+
+            // Traverse all zombies to find the closest zombie.
             Coordinate closestCoordinate = coordinates.getFirst();
             double closestDistance = closestCoordinate.calculateDistance(myCoordinate);
             for (Coordinate coordinate : coordinates) {
@@ -102,10 +115,11 @@ public class AgentArmy implements IAgent, Steppable {
                     closestDistance = distance;
                 }
             }
-
             Coordinate finalCoordinate;
+
+            // Find if any army or civilian on the shoot way between this agent and closest zombie.
             List<Coordinate> humans = new ArrayList<>();
-            boolean isAnyoneOnTheShotWay = false;
+            boolean isAnyoneOnTheShootWay = false;
             for (AgentCivilian mCivilian : zombieGame.mCivilians) {
                 Double2D civilian = yard.getObjectLocation(mCivilian);
                 Coordinate coordinate = new Coordinate(civilian.getX(), civilian.getY());
@@ -121,36 +135,49 @@ public class AgentArmy implements IAgent, Steppable {
                 coordinate.setAgent(army);
                 humans.add(coordinate);
             }
+
+            // Use the area of a triangle to find if three points are collinear.
+            // Army(x,y), Agent(i,j), Zombie(p,q), S = 0.5 * |(p-x)*(j-y)-(q-y)(i-x)|, when S = 0, points are collinear.
             for (Coordinate human : humans) {
-                if (((human.getX() - myCoordinate.getX()) * (closestCoordinate.getY() - myCoordinate.getY())
-                        == (closestCoordinate.getX() - myCoordinate.getX()) * (human.getY() - myCoordinate.getY()))
-                        && Math.min(myCoordinate.getX(), closestCoordinate.getX()) < human.getX()
-                        && human.getX() < Math.max(myCoordinate.getX(), closestCoordinate.getX())
-                        && Math.min(myCoordinate.getY(), closestCoordinate.getY()) < human.getY()
-                        && human.getY() < Math.max(myCoordinate.getY(), closestCoordinate.getY())) {
-                    isAnyoneOnTheShotWay = true;
+                if ((closestCoordinate.getX() - myCoordinate.getX()) * (human.getY() - myCoordinate.getY()) ==
+                        (closestCoordinate.getY() - myCoordinate.getY()) * (human.getX() - myCoordinate.getX())) {
+                    isAnyoneOnTheShootWay = true;
                     break;
                 }
             }
-            if (closestDistance <= mShotRange
-                    && mLastShotBeforeSteps > mArmyShotColdDown
-                    && !isAnyoneOnTheShotWay) {
+
+            // If the closest zombie is in the range of shooting and the army is not get too close, kill the zombie.
+            // Note that if there is any army or civilian on the shooting way, stop shooting.
+            // Note that the gun has clod down.
+            if (closestDistance <= mShootRange
+                    && mLastShootBeforeSteps > mArmyShootColdDown
+                    && !isAnyoneOnTheShootWay) {
                 zombieGame.mYard.remove(closestCoordinate.getAgent());
                 zombieGame.mZombies.remove((AgentZombie) closestCoordinate.getAgent());
                 mKillCount++;
-                mLastShotBeforeSteps = 0;
+                mLastShootBeforeSteps = 0;
                 finalCoordinate = myCoordinate;
-            } else if (closestDistance <= mShotRange
+            }
+            // If the gun is in the clod down period, and the army is not get too close, approach to zombie.
+            else if (closestDistance <= mShootRange
                     && closestDistance > mEscapeRange
-                    && mLastShotBeforeSteps <= mArmyShotColdDown) {
-                finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
-            } else if (closestDistance <= mEscapeRange) {
-                finalCoordinate = myCoordinate.calculateFinalCoordinateForRunningAway(closestCoordinate, mSpeed);
-            } else if (closestDistance > mShotRange) {
-                finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
-            } else {
+                    && mLastShootBeforeSteps <= mArmyShootColdDown) {
                 finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
             }
+            // If the army is getting too close, run away.
+            else if (closestDistance <= mEscapeRange) {
+                finalCoordinate = myCoordinate.calculateFinalCoordinateForRunningAway(closestCoordinate, mSpeed);
+            }
+            // If the army is too far away the zombie to shoot, get close.
+            else if (closestDistance > mShootRange) {
+                finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
+            }
+            // Any other conditions, get close to the zombie.
+            else {
+                finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
+            }
+
+            // Move the agent to the next coordinate.
             if (finalCoordinate.getX() > yard.getWidth()
                     || finalCoordinate.getX() < 0
                     || finalCoordinate.getY() > yard.getHeight()
@@ -160,8 +187,8 @@ public class AgentArmy implements IAgent, Steppable {
                         zombieGame.random.nextDouble() * yard.getHeight());
                 finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(coordinate, mSpeed);
             }
-            if (mLastShotBeforeSteps != Integer.MAX_VALUE) {
-                mLastShotBeforeSteps++;
+            if (mLastShootBeforeSteps != Integer.MAX_VALUE) {
+                mLastShootBeforeSteps++;
             }
             sumForces.addIn(new Double2D(finalCoordinate.getX() - myCoordinate.getX(),
                     finalCoordinate.getY() - myCoordinate.getY()));

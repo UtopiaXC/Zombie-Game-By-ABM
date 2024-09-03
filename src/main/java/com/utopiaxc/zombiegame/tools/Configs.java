@@ -4,6 +4,12 @@ import java.awt.*;
 
 import com.utopiaxc.zombiegame.tools.Enums.StartingPosition;
 
+/**
+ * <p> Class to storage the configs, bean class.
+ *
+ * @author utopiaxc
+ * @since 2024-09-03 23:27:58
+ */
 public class Configs {
     private static Configs instance;
     private double mSpeedZombie;
@@ -13,9 +19,9 @@ public class Configs {
     private double mSpeedVariationCivilian;
     private double mSpeedVariationArmy;
     private int mNumZombies;
-    private double mArmyShotRange;
+    private double mArmyShootRange;
     private double mArmyEscapeRange;
-    private int mArmyShotColdDown;
+    private int mArmyShootColdDown;
     private int mNumCivilian;
     private int mNumArmy;
     private Color mColorZombie;
@@ -25,6 +31,13 @@ public class Configs {
     private StartingPosition mPositionCivilian;
     private StartingPosition mPositionArmy;
 
+    /**
+     * <p> Singleton Pattern of config.
+     *
+     * @return com.utopiaxc.zombiegame.tools.Configs
+     * @author utopiaxc
+     * @since 2024-09-03 23:28:30
+     */
     public static synchronized Configs getInstance() {
         if (instance == null) {
             instance = new Configs();
@@ -32,6 +45,12 @@ public class Configs {
         return instance;
     }
 
+    /**
+     * <p> Construct method of config class.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:29:16
+     */
     private Configs() {
         mSpeedZombie = 2.0;
         mSpeedArmy = 0.8;
@@ -42,9 +61,9 @@ public class Configs {
         mNumZombies = 50;
         mNumCivilian = 100;
         mNumArmy = 25;
-        mArmyShotRange = 30;
+        mArmyShootRange = 30;
         mArmyEscapeRange = 5;
-        mArmyShotColdDown = 10;
+        mArmyShootColdDown = 10;
         mColorZombie = Color.RED;
         mColorCivilian = Color.GREEN;
         mColorArmy = Color.ORANGE;
@@ -149,12 +168,12 @@ public class Configs {
         mPositionArmy = positionArmy;
     }
 
-    public int getArmyShotColdDown() {
-        return mArmyShotColdDown;
+    public int getArmyShootColdDown() {
+        return mArmyShootColdDown;
     }
 
-    public void setArmyShotColdDown(int armyShotColdDown) {
-        mArmyShotColdDown = armyShotColdDown;
+    public void setArmyShootColdDown(int armyShootColdDown) {
+        mArmyShootColdDown = armyShootColdDown;
     }
 
     public double getArmyEscapeRange() {
@@ -165,12 +184,12 @@ public class Configs {
         mArmyEscapeRange = armyEscapeRange;
     }
 
-    public double getArmyShotRange() {
-        return mArmyShotRange;
+    public double getArmyShootRange() {
+        return mArmyShootRange;
     }
 
-    public void setArmyShotRange(double armyShotRange) {
-        mArmyShotRange = armyShotRange;
+    public void setArmyShootRange(double armyShootRange) {
+        mArmyShootRange = armyShootRange;
     }
 
     public double getSpeedVariationArmy() {

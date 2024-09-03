@@ -29,7 +29,7 @@ public class AgentZombie implements IAgent, Steppable {
 
     @Override
     public void setSpeed(double speed) {
-        mSpeed=speed;
+        mSpeed = speed;
     }
 
     public double getKillCount() {
@@ -39,12 +39,19 @@ public class AgentZombie implements IAgent, Steppable {
     @Override
     public void step(SimState simState) {
         try {
+            // Get the zombie agent entry from simulator.
             ZombieGame zombieGame = (ZombieGame) simState;
             zombieGame.checkOver();
+
+            // Change the speed of the agent by random value and the correction factor.
             mSpeed += (zombieGame.random.nextDouble() - 0.5) * Configs.getInstance().getSpeedVariationZombie();
+
+            // Get the coordinate entity from simulator.
             Continuous2D yard = zombieGame.mYard;
             Double2D me = yard.getObjectLocation(this);
             MutableDouble2D sumForces = new MutableDouble2D();
+
+            // Get all armies' and civilians' coordinate.
             List<Coordinate> coordinates = new ArrayList<>();
             Coordinate myCoordinate = new Coordinate(me.getX(), me.getY());
             for (AgentCivilian mCivilian : zombieGame.mCivilians) {
@@ -59,6 +66,8 @@ public class AgentZombie implements IAgent, Steppable {
                 coordinate.setAgent(mArmy);
                 coordinates.add(coordinate);
             }
+
+            // If there is no armies and civilians, move randomly.
             if (coordinates.isEmpty()) {
                 Coordinate coordinate = new Coordinate(
                         zombieGame.random.nextDouble() * yard.getWidth(),
@@ -70,6 +79,8 @@ public class AgentZombie implements IAgent, Steppable {
                 yard.setObjectLocation(this, new Double2D(sumForces));
                 return;
             }
+
+            // Traverse all humans to find the closest human.
             Coordinate closestCoordinate = coordinates.getFirst();
             double closestDistance = closestCoordinate.calculateDistance(myCoordinate);
             for (Coordinate coordinate : coordinates) {
@@ -82,6 +93,7 @@ public class AgentZombie implements IAgent, Steppable {
 
             Coordinate finalCoordinate;
 
+            // If the zombie could catch the human, kill the human and transform the agent to the zombie.
             if (closestDistance < mSpeed) {
                 zombieGame.mYard.remove(closestCoordinate.getAgent());
                 try {
@@ -100,6 +112,7 @@ public class AgentZombie implements IAgent, Steppable {
                 mKillCount++;
             }
 
+            // Move the zombie agent.
             finalCoordinate = myCoordinate.calculateFinalCoordinateForApproaching(closestCoordinate, mSpeed);
             sumForces.addIn(new Double2D(finalCoordinate.getX() - myCoordinate.getX(),
                     finalCoordinate.getY() - myCoordinate.getY()));

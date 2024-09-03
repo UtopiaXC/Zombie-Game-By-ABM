@@ -1,7 +1,6 @@
 package com.utopiaxc.zombiegame.game;
 
 import com.utopiaxc.zombiegame.agents.IAgent;
-import com.utopiaxc.zombiegame.tools.Configs;
 import sim.display.Console;
 import sim.display.Controller;
 import sim.display.Display2D;
@@ -34,8 +33,8 @@ public class ZombieGameWithUI extends GUIState {
         super(new ZombieGame(System.currentTimeMillis()));
     }
 
-    public void init(){
-        if (mConsole != null){
+    public void init() {
+        if (mConsole != null) {
             mConsole.setVisible(false);
             mConsole = null;
         }
@@ -57,13 +56,12 @@ public class ZombieGameWithUI extends GUIState {
 
     // Set up the game, should be called during loading the simulation and starting the simulation
     public void setupPortrayals() {
-        ZombieGame zombieGame = (ZombieGame)state;
+        ZombieGame zombieGame = (ZombieGame) state;
         mYardPortrayal.setField(zombieGame.mYard);
-        mYardPortrayal.setPortrayalForAll(new OvalPortrayal2D(){
-            public void draw(Object object, Graphics2D graphics, DrawInfo2D info)
-            {
+        mYardPortrayal.setPortrayalForAll(new OvalPortrayal2D() {
+            public void draw(Object object, Graphics2D graphics, DrawInfo2D info) {
                 // Set the point color by interface
-                IAgent agent = (IAgent)object;
+                IAgent agent = (IAgent) object;
                 paint = agent.getAgentColor();
                 super.draw(object, graphics, info);
             }
@@ -89,7 +87,7 @@ public class ZombieGameWithUI extends GUIState {
         // Show the frame
         mDisplayFrame.setVisible(true);
         // Attach the yard portrayal to the display
-        mDisplay.attach(mYardPortrayal,"Yard");
+        mDisplay.attach(mYardPortrayal, "Yard");
     }
 
     // This method is used to destroy the window and the frame of the game

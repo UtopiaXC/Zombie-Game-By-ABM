@@ -6,7 +6,14 @@ import com.utopiaxc.zombiegame.tools.Enums;
 
 import javax.swing.*;
 
+/**
+ * <p> This class is the entrance of the application.
+ *
+ * @author utopiaxc
+ * @since 2024-09-03 23:07:43
+ */
 public class Application {
+    // UI components for the config editing.
     private JTextField mInputZombieSpeed;
     private JButton mButtonStartGame;
     private JTextField mInputZombieSpeedCorrectionFactor;
@@ -22,9 +29,9 @@ public class Application {
     private JTextField mInputZombieAmount;
     private JTextField mInputCivilianAmount;
     private JTextField mInputArmyAmount;
-    private JTextField mInputArmyShotRange;
+    private JTextField mInputArmyShootRange;
     private JTextField mInputArmyEscapeRange;
-    private JTextField mInputArmyShotColdDown;
+    private JTextField mInputArmyShootColdDown;
     private JComboBox mSelectorZombieGenerationPosition;
     private JComboBox mSelectorCivilianGenerationPosition;
     private JComboBox mSelectorArmyGenerationPosition;
@@ -39,20 +46,40 @@ public class Application {
     private JLabel mLabelArmyAmount;
     private JLabel mLabelArmySpeedCorrectionFactor;
     private JLabel mLabelArmyGenerationPosition;
-    private JLabel mLabelArmyShotRange;
+    private JLabel mLabelArmyShootRange;
     private JLabel mLabelArmyEscapeRange;
-    private JLabel mLabelArmyShotColdDown;
+    private JLabel mLabelArmyShootColdDown;
     private JButton mButtonResetConfig;
     private JFrame mFrame;
 
+    /**
+     * <p> Create new Application entity.
+     *
+     * @param args params
+     * @author utopiaxc
+     * @since 2024-09-03 23:10:41
+     */
     public static void main(String[] args) {
         new Application();
     }
 
+    /**
+     * <p> Constructor method, init the UI.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:11:39
+     */
     public Application() {
         init();
     }
 
+
+    /**
+     * <p> Init the default config editing UI.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:12:29
+     */
     private void init() {
         mFrame = new JFrame("Zombie Game Launcher");
         mFrame.setContentPane(mPanel);
@@ -63,6 +90,12 @@ public class Application {
         setButtons();
     }
 
+    /**
+     * <p> Read all configs from default and set they into UI.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:13:07
+     */
     private void setDefaultConfig() {
         Configs configs = Configs.getInstance();
         mInputZombieAmount.setText(String.valueOf(configs.getNumZombies()));
@@ -77,14 +110,21 @@ public class Application {
         mInputArmySpeed.setText(String.valueOf(configs.getSpeedArmy()));
         mInputArmySpeedCorrectionFactor.setText(String.valueOf(configs.getSpeedVariationArmy()));
         mSelectorArmyGenerationPosition.setSelectedIndex(configs.getPositionArmy().getIndex());
-        mInputArmyShotRange.setText(String.valueOf(configs.getArmyShotRange()));
+        mInputArmyShootRange.setText(String.valueOf(configs.getArmyShootRange()));
         mInputArmyEscapeRange.setText(String.valueOf(configs.getArmyEscapeRange()));
-        mInputArmyShotColdDown.setText(String.valueOf(configs.getArmyShotColdDown()));
+        mInputArmyShootColdDown.setText(String.valueOf(configs.getArmyShootColdDown()));
     }
 
+    /**
+     * <p> Start mason UI when click the start button
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:13:20
+     */
     private void setButtons() {
         mButtonStartGame.addActionListener(_ -> {
-            if (!setConfigs()){
+            // Check the configs' format and show the warning dialog if there are any errors.
+            if (setConfigsAndReturnIfFormatIsWrong()) {
                 showUnableDialog();
                 return;
             }
@@ -92,17 +132,26 @@ public class Application {
             mButtonStartGame.setEnabled(false);
             mButtonResetConfig.setEnabled(true);
         });
-        mButtonResetConfig.addActionListener(_->{
-            if (!setConfigs()){
+
+        // Update the configs
+        mButtonResetConfig.addActionListener(_ -> {
+            // Check the configs' format and show the warning dialog if there are any errors.
+            if (setConfigsAndReturnIfFormatIsWrong()) {
                 showUnableDialog();
                 return;
             }
         });
     }
 
-    public boolean setConfigs(){
+    /**
+     * <p> Set configs into config instance.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:13:39
+     */
+    private boolean setConfigsAndReturnIfFormatIsWrong() {
         if (!checkConfigs()) {
-            return false;
+            return true;
         }
         try {
             Configs configs = Configs.getInstance();
@@ -121,21 +170,33 @@ public class Application {
             configs.setSpeedVariationArmy(Double.parseDouble(mInputArmySpeedCorrectionFactor.getText()));
             configs.setPositionArmy(Enums.StartingPosition.getFromIndex(
                     mSelectorArmyGenerationPosition.getSelectedIndex()));
-            configs.setArmyShotRange(Double.parseDouble(mInputArmyShotRange.getText()));
+            configs.setArmyShootRange(Double.parseDouble(mInputArmyShootRange.getText()));
             configs.setArmyEscapeRange(Double.parseDouble(mInputArmyEscapeRange.getText()));
-            configs.setArmyShotColdDown(Integer.parseInt(mInputArmyShotColdDown.getText()));
+            configs.setArmyShootColdDown(Integer.parseInt(mInputArmyShootColdDown.getText()));
         } catch (Exception e) {
             System.out.println("ERROR : " + e);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
+    /**
+     * <p> Check values, not yet done.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:14:01
+     */
     private boolean checkConfigs() {
         return true;
     }
 
-    private void showUnableDialog(){
-        JOptionPane.showMessageDialog(null,"Input formatting errors exist");
+    /**
+     * <p> Show a warning dialog when input value format is wrong.
+     *
+     * @author utopiaxc
+     * @since 2024-09-03 23:14:12
+     */
+    private void showUnableDialog() {
+        JOptionPane.showMessageDialog(null, "Input formatting errors exist");
     }
 }
