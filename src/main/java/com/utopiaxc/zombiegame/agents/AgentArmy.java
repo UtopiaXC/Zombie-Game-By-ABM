@@ -140,7 +140,11 @@ public class AgentArmy implements IAgent, Steppable {
             // Army(x,y), Agent(i,j), Zombie(p,q), S = 0.5 * |(p-x)*(j-y)-(q-y)(i-x)|, when S = 0, points are collinear.
             for (Coordinate human : humans) {
                 if ((closestCoordinate.getX() - myCoordinate.getX()) * (human.getY() - myCoordinate.getY()) ==
-                        (closestCoordinate.getY() - myCoordinate.getY()) * (human.getX() - myCoordinate.getX())) {
+                        (closestCoordinate.getY() - myCoordinate.getY()) * (human.getX() - myCoordinate.getX())
+                        && Math.min(myCoordinate.getX(), closestCoordinate.getX()) < human.getX()
+                        && human.getX() < Math.max(myCoordinate.getX(), closestCoordinate.getX())
+                        && Math.min(myCoordinate.getY(), closestCoordinate.getY()) < human.getY()
+                        && human.getY() < Math.max(myCoordinate.getY(), closestCoordinate.getY())) {
                     isAnyoneOnTheShootWay = true;
                     break;
                 }
