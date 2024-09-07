@@ -372,7 +372,7 @@
         </constraints>
         <properties>
           <enabled value="false"/>
-          <text value="Reset Config"/>
+          <text value="Set Config"/>
         </properties>
       </component>
     </children>
